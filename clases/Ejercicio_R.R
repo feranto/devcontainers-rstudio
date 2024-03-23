@@ -233,9 +233,26 @@ d[1:20, 1:10]
 
 ############# I listar nombres de variables
 
-nombres_variables
+nombres_variables <- names(d)
+print(nombres_variables)
+
+############# II listar nombres de variables
 
 
+freqMarginalCCAA <- table(d$CCAA)
+print(freqMarginalCCAA)
+
+freqMarginalP14 <- table(d$P14)
+print(freqMarginalP14)
+
+freqMarginalRECUERDO <- table(d$RECUERDO)
+print(freqMarginalRECUERDO)
+
+freqMarginalESTUDIOS <- table(d$ESTUDIOS)
+print(freqMarginalESTUDIOS)
+
+freqMarginalP27 <- table(d$P27)
+print(freqMarginalP27)
 
 
 #--------------
