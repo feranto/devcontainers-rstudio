@@ -1,0 +1,189 @@
+
+R version 4.3.3 (2024-02-29) -- "Angel Food Cake"
+Copyright (C) 2024 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> # dir <- "C:\\Users\\carli\\OneDrive\\Documents\\AS10\\AS10 Material de apoyo\\R\\Paquete estadistico R\\Ficheros de datos"
+> # setwd(dir)
+> 
+> # Matriz de datos da3240, del Bar?metro de octubre de 2009
+> anchos <- c(-9, 2, 2, -25, 1, -2, 1, -147, 1, 2)
+> nvar <- c('ccaa', 'prov', 'siteco', 'sitpol', 'sexo', 'edad')
+> d3240 <- read.fwf('DA3240', widths=anchos, col.names=nvar)
+> d3240[1:20,]; head(d3240) # La instrucci?n head saca por pantalla las primeras filas de la hoja de datos
+   ccaa prov siteco sitpol sexo edad
+1    16    1      8     NA    1    5
+2    16    1      8      1    1   99
+3    16    1      8      1    1   98
+4    16    1      8      1    1   98
+5    16    1      8     NA    5   98
+6    16    1      8      9    1   99
+7    16    1      1      1    1   98
+8    16    1      3     NA    4    8
+9    16    1      2      1    8   99
+10   16    1      2      1    5   99
+11   16    1      3     NA    3    8
+12   16    1      2      1    5   99
+13   16    1      2      1    5   99
+14   16    1      3      9    5   99
+15   16    1      2      1    6   99
+16   16    1      2      1    7   99
+17   16    1      2      1    4    8
+18   16    1      3     NA    0   99
+19   16    1      2     NA    0   99
+20   16    1      3      1    9   99
+  ccaa prov siteco sitpol sexo edad
+1   16    1      8     NA    1    5
+2   16    1      8      1    1   99
+3   16    1      8      1    1   98
+4   16    1      8      1    1   98
+5   16    1      8     NA    5   98
+6   16    1      8      9    1   99
+> names(d3240)
+[1] "ccaa"   "prov"   "siteco" "sitpol" "sexo"   "edad"  
+> #---------------------------------------------------
+> # CONVERSI?N DE VARIABLES NUM?RICAS EN FACTORES
+> #---------------------------------------------------
+> b <- d3240
+> # Conversion de las variables en factores con bucle for
+> # (convertimos todas las variables excepto 'edad', que es la sexta y ?ltima)
+> for (i in 1:5) b[ , i] <- as.factor(b[ , i])
+> levels(b$siteco)
+[1] "1" "2" "3" "8" "9"
+> #---------------------------------------------
+> # MEDIDAS DE POSICI?N, DISPERSI?N Y FORMA
+> #---------------------------------------------
+> ed <- b$edad
+> ed <- ed[ed < 99]
+> #--------------
+> # Tarea 1
+> #--------------
+> ed2 <- ed
+> # print values
+> print("R is fun")
+[1] "R is fun"
+> 
+> #-------------------------------------------------------------------
+> # IMPORTACI?N DE DATOS DESDE FICHEROS DE SPSS (Ficheros .sav)
+> #-------------------------------------------------------------------
+> library(foreign)
+> # Si queremos que los factores nos aparezcan con su literal
+> d <- read.spss('3240.sav', to.data.frame=T)
+Warning messages:
+1: In read.spss("3240.sav", to.data.frame = T) :
+  Duplicated levels in factor P0A: Congoleña
+2: In read.spss("3240.sav", to.data.frame = T) :
+  Undeclared level(s) 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 96 added in variable: P42
+> d[1:20, 1:10]
+   ESTU CUES       CCAA        PROV
+1  3240    1 País Vasco Araba/Álava
+2  3240    2 País Vasco Araba/Álava
+3  3240    3 País Vasco Araba/Álava
+4  3240    4 País Vasco Araba/Álava
+5  3240    5 País Vasco Araba/Álava
+6  3240    6 País Vasco Araba/Álava
+7  3240    7 País Vasco Araba/Álava
+8  3240    8 País Vasco Araba/Álava
+9  3240    9 País Vasco Araba/Álava
+10 3240   10 País Vasco Araba/Álava
+11 3240   11 País Vasco Araba/Álava
+12 3240   12 País Vasco Araba/Álava
+13 3240   13 País Vasco Araba/Álava
+14 3240   14 País Vasco Araba/Álava
+15 3240   15 País Vasco Araba/Álava
+16 3240   16 País Vasco Araba/Álava
+17 3240   17 País Vasco Araba/Álava
+18 3240   18 País Vasco Araba/Álava
+19 3240   19 País Vasco Araba/Álava
+20 3240   20 País Vasco Araba/Álava
+                                                 MUN
+1  Mun.<=100.000 hab. no capitales de CA o provincia
+2  Mun.<=100.000 hab. no capitales de CA o provincia
+3  Mun.<=100.000 hab. no capitales de CA o provincia
+4  Mun.<=100.000 hab. no capitales de CA o provincia
+5  Mun.<=100.000 hab. no capitales de CA o provincia
+6  Mun.<=100.000 hab. no capitales de CA o provincia
+7  Mun.<=100.000 hab. no capitales de CA o provincia
+8                           Burgos / Vitoria-Gasteiz
+9                           Burgos / Vitoria-Gasteiz
+10                          Burgos / Vitoria-Gasteiz
+11                          Burgos / Vitoria-Gasteiz
+12                          Burgos / Vitoria-Gasteiz
+13                          Burgos / Vitoria-Gasteiz
+14                          Burgos / Vitoria-Gasteiz
+15                          Burgos / Vitoria-Gasteiz
+16                          Burgos / Vitoria-Gasteiz
+17                          Burgos / Vitoria-Gasteiz
+18                          Burgos / Vitoria-Gasteiz
+19                          Burgos / Vitoria-Gasteiz
+20                          Burgos / Vitoria-Gasteiz
+                             TAMUNI           CAPITAL       DISTR     SECCION
+1  Menos o igual a 2.000 habitantes  Otros municipios Anonimizado Anonimizado
+2  Menos o igual a 2.000 habitantes  Otros municipios Anonimizado Anonimizado
+3  Menos o igual a 2.000 habitantes  Otros municipios Anonimizado Anonimizado
+4  Menos o igual a 2.000 habitantes  Otros municipios Anonimizado Anonimizado
+5  Menos o igual a 2.000 habitantes  Otros municipios Anonimizado Anonimizado
+6  Menos o igual a 2.000 habitantes  Otros municipios Anonimizado Anonimizado
+7  Menos o igual a 2.000 habitantes  Otros municipios Anonimizado Anonimizado
+8      100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+9      100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+10     100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+11     100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+12     100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+13     100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+14     100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+15     100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+16     100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+17     100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+18     100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+19     100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+20     100.001 a 400.000 habitantes Capital de CC.AA. Anonimizado Anonimizado
+        ENTREV
+1  Anonimizado
+2  Anonimizado
+3  Anonimizado
+4  Anonimizado
+5  Anonimizado
+6  Anonimizado
+7  Anonimizado
+8  Anonimizado
+9  Anonimizado
+10 Anonimizado
+11 Anonimizado
+12 Anonimizado
+13 Anonimizado
+14 Anonimizado
+15 Anonimizado
+16 Anonimizado
+17 Anonimizado
+18 Anonimizado
+19 Anonimizado
+20 Anonimizado
+> 
+> #--------------
+> # Tarea 2
+> #--------------
+> 
+> #--------------
+> # Tarea 3
+> #--------------
+> 
+> proc.time()
+   user  system elapsed 
+  0.591   0.234   0.719 
