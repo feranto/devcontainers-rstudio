@@ -264,6 +264,27 @@ print(cruceRecuerdoP27)
 cruceESTUDIOSP27 <- table(d$ESTUDIOS, d$P27)
 print(cruceESTUDIOSP27)
 
+############# IV listar los cruces de variables
+
+porcentajefilasCCAARECUERDO <- prop.table(cruceCCAARecuerdo, margin = 1) * 100
+print(porcentajefilasCCAARECUERDO)
+
+porcentajefilasRECUERDOP27 <- prop.table(cruceRecuerdoP27, margin = 1) * 100
+print(porcentajefilasRECUERDOP27)
+
+porcentajefilasESTUDIOSP27 <- prop.table(cruceESTUDIOSP27, margin = 1) * 100
+print(porcentajefilasESTUDIOSP27)
+
+# Porcentajes por columnas
+porcentajecolumnasCCAARECUERDO <- prop.table(cruceCCAARecuerdo, margin = 2) * 100
+print(porcentajecolumnasCCAARECUERDO)
+
+porcentajecolumnasRECUERDOP27 <- prop.table(cruceRecuerdoP27, margin = 2) * 100
+print(porcentajecolumnasRECUERDOP27)
+
+porcentajecolumnasESTUDIOSP27 <- prop.table(cruceESTUDIOSP27, margin = 2) * 100
+print(porcentajecolumnasESTUDIOSP27)
+
 #--------------
 # Tarea 3
 #--------------
