@@ -192,10 +192,10 @@ media <- mean(ed2)
 print(media)
 
 ############# II reemplazamos los valores de 31 a 50 con NA
-lower_bound <- 31
-upper_bound <- 50
+lowerbound <- 31
+upperbound <- 50
 
-ed2[ed2 >= lower_bound & ed2 <= upper_bound] <- NA
+ed2[ed2 >= lowerbound & ed2 <= upperbound] <- NA
 print(ed2)
 
 
@@ -206,13 +206,13 @@ print(media)
 
 ############# IV calcular error standard
 # Calculate the standard deviation
-standard_deviation <- sd(ed2)
+standarddeviation <- sd(ed2)
 
 # Calculate the standard error
-standard_error <- standard_deviation / sqrt(length(data))
+standarderror <- standarddeviation / sqrt(length(data))
 
 # Print the standard error
-print(standard_error)
+print(standarderror)
 
 ############# V numsummary
 
@@ -233,10 +233,10 @@ d[1:20, 1:10]
 
 ############# I listar nombres de variables
 
-nombres_variables <- names(d)
-print(nombres_variables)
+nombresvariables <- names(d)
+print(nombresvariables)
 
-############# II listar nombres de variables
+############# II 
 
 
 freqMarginalCCAA <- table(d$CCAA)
@@ -288,3 +288,38 @@ print(porcentajecolumnasESTUDIOSP27)
 #--------------
 # Tarea 3
 #--------------
+
+
+h <- b
+
+
+h$intedad <- cut(h$edad, breaks = c(18, 25, 35, 45, 55, 65, Inf),
+                 labels = c("18-24", "25-34", "35-44", "45-54", "55-64", "65+"))
+
+############# I 
+crucesitpolintedad <- table(h$sitpol, h$intedad)
+print(crucesitpolintedad)
+
+############# II 
+cruceccaaintedad <- table(h$ccaa, h$intedad)
+print(cruceccaaintedad)
+
+############# III 
+crucesexointedad <- table(h$sexo, h$intedad)
+print(crucesexointedad)
+
+############# IV 
+porcentajefilasccaaintedad <- prop.table(cruceccaaintedad, margin = 1) * 100
+print(porcentajefilasccaaintedad)
+
+############# V 
+porcentajecolumnassexointedad <- prop.table(crucesexointedad, margin = 2) * 100
+print(porcentajecolumnassexointedad)
+
+############# VI 
+chisqtest <- chisq.test(cruceccaaintedad)
+print(chisqtest)
+
+############# VII 
+cruceccaasitpolcontrolsexo <- table(h$ccaa, h$sitpol, h$sexo)
+print(cruceccaasitpolcontrolsexo)
