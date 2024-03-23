@@ -254,6 +254,15 @@ print(freqMarginalESTUDIOS)
 freqMarginalP27 <- table(d$P27)
 print(freqMarginalP27)
 
+############# III listar los cruces de variables
+cruceCCAARecuerdo <- table(d$CCAA, d$RECUERDO)
+print(cruceCCAARecuerdo)
+
+cruceRecuerdoP27 <- table(d$RECUERDO, d$P27)
+print(cruceRecuerdoP27)
+
+cruceESTUDIOSP27 <- table(d$ESTUDIOS, d$P27)
+print(cruceESTUDIOSP27)
 
 #--------------
 # Tarea 3
