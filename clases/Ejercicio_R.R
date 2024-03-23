@@ -24,11 +24,38 @@ ed <- ed[ed < 99]
 # Tarea 1
 #--------------
 ed2 <- ed
-# calcular la media
+
+############# vemos el arreglo en R
+print(ed2)
+
+############# I calcular la media
 media <- mean(ed2)
 print(media)
 
+############# II reemplazamos los valores de 31 a 50 con NA
+lower_bound <- 31
+upper_bound <- 50
 
+ed2[ed2 >= lower_bound & ed2 <= upper_bound] <- NA
+print(ed2)
+
+
+############# III calcular media con parametro
+media <- mean(ed2,na.rm=T)
+print(media)
+
+
+############# IV calcular error standard
+# Calculate the standard deviation
+standard_deviation <- sd(ed2)
+
+# Calculate the standard error
+standard_error <- standard_deviation / sqrt(length(data))
+
+# Print the standard error
+print(standard_error)
+
+############# V calcular error standard
 
 #-------------------------------------------------------------------
 # IMPORTACI?N DE DATOS DESDE FICHEROS DE SPSS (Ficheros .sav)
